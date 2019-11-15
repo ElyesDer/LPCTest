@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.lakooz.lpctest.databinding.PotsFragmentBinding
 
 class PotsFragment : Fragment() {
+
+    private lateinit var binding: PotsFragmentBinding
+
+    private lateinit var viewModel: PotsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +23,6 @@ class PotsFragment : Fragment() {
         val binding = PotsFragmentBinding.inflate(inflater, container, false)
 
         // set up recycler view
-
 
         // TODO : set up view model
 

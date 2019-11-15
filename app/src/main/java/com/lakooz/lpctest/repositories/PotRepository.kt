@@ -15,7 +15,7 @@ class PotRepository(private val potDao: PotDao) {
         potDao.insertAllAndSynchronize(pots)
     }
 
-    fun getPots(category: Int) = potDao.getPots(category)
+    fun getPots(category: Int = 0) = potDao.getPots(category)
 
     companion object {
         // TODO : initialize

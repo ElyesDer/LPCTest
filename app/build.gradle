@@ -16,7 +16,10 @@ android {
         versionCode 1
         versionName "1.0"
 
-        // TODO
+        // TODO : DONE 4 data binding
+        dataBinding {
+            enabled = true
+        }
     }
     buildTypes {
         release {

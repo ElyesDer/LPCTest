@@ -2,6 +2,7 @@ package com.lakooz.lpctest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         TabLayoutMediator(tabLayout!!, viewPager!!,
             TabLayoutMediator.TabConfigurationStrategy { tab, position ->
-                // TODO : set tabs titles
+                // TODO : DONE set tabs titles
                 tab.text = tabLabels[position]
             }).attach()
 
@@ -61,11 +62,15 @@ class MainActivity : AppCompatActivity() {
             resources.getDimension(R.dimen.swipe_refresh_offset).toInt()
         )
 
-        // TODO : set up view model
+        // TODO : set up view model and lanch it
+        val model = ViewModelProviders.of(this)[PotsViewModel::class.java]
 
+        model.loadPots()
 
         swipeRefreshLayout!!.setOnRefreshListener {
             // TODO
+            // call refresh method here
+            model.loadPots()
         }
 
         viewPager!!.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
