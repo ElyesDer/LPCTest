@@ -12,8 +12,6 @@ class PotsViewModel() : ViewModel() {
     // TODO : initialize
     val pots : LiveData<List<Pot>>
 
-    init {
 
-    }
 
 }

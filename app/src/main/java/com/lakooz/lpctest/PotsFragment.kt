@@ -21,10 +21,10 @@ class PotsFragment : Fragment() {
 
         val binding = PotsFragmentBinding.inflate(inflater, container, false)
 
-       // set up recycler view
+        // set up recycler view
 
 
-      // TODO : set up view model
+        // TODO : set up view model
 
         return binding.root
     }

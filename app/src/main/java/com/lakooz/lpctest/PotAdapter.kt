@@ -22,10 +22,11 @@ class PotAdapter(private val context: Context, private var emptyView: View? = nu
     private var recyclerView: RecyclerView? = null
 
 
+    // as a call back fun
     fun setPots(pots: List<Pot>?) {
         this.pots = pots
-        // TODO : notify data change and handle empty view
-
+        // TODO :DONE notify data change and handle empty view
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -42,13 +43,14 @@ class PotAdapter(private val context: Context, private var emptyView: View? = nu
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // TODO : bind view holder & format amount properly
-        //todo do some conversion to amount with amount = 0.0 format
+        // TODO :DONE bind view holder & format amount properly DONE
+        //todo DONE do some conversion to amount with amount = 0.0 format
         val potItem: Pot = pots!!.get(position)
         holder.title.text = potItem.name
         holder.subtitle.text = potItem.amount.toString() + "$ Récoltés"
         holder.viewers.text = potItem.contributorsCount.toString()
 
+        // todo : apply some some corner here
         Glide.with(context).load(potItem.imageUrl)
             .apply(RequestOptions().centerCrop())
             .into(holder.image)
@@ -65,6 +67,8 @@ class PotAdapter(private val context: Context, private var emptyView: View? = nu
 
         super.onDetachedFromRecyclerView(recyclerView)
     }
+
+    // couldn't do it the other way
 
     inner class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
 
