@@ -16,25 +16,15 @@ class MyApplication : Application() {
         super.onCreate()
 
         // TODO: initialize database
-        var db = AppDatabase.getInstance(context = applicationContext)
-        db.getDao()
+        database = AppDatabase.getInstance(context = applicationContext)
 
-        appDatabase = db
-
-        potRepository = PotRepository( appDatabase.getDao())
-        mainViewModel = MainViewModel(this, potRepository)
 
     }
 
     companion object {
 
-        // lets instanciate all the stuf
-        lateinit var retrofit: Retrofit
-        lateinit var potApi: IRestApiClient
-        lateinit var potRepository: PotRepository
-        lateinit var mainViewModel: MainViewModel
-        lateinit var appDatabase: AppDatabase
-
+        lateinit var database: AppDatabase
+            private set
 
     }
 }

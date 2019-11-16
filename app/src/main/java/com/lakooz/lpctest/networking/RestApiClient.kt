@@ -8,7 +8,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RestApiClient {
 
-
     private const val BASE_URL = "https://recrutement.lepotcommuntest.fr/2019/recruiting/"
 
     fun getPots(): Single<List<Pot>> {
@@ -16,7 +15,7 @@ object RestApiClient {
     }
 
     fun createPot(category: Int): Single<Pot> {
-        return RestAPI.invoke().createPot()
+        return RestAPI.invoke().createPot(category)
     }
 
     object RestAPI {

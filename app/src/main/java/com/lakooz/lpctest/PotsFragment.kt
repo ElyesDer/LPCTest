@@ -1,30 +1,18 @@
 package com.lakooz.lpctest
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lakooz.lpctest.databinding.PotsFragmentBinding
-import androidx.recyclerview.widget.RecyclerView
-import com.lakooz.lpctest.utils.IUICallBacks
 
 
-class PotsFragment : Fragment(), IUICallBacks {
-    override fun doOnSuccess(msg: String) {
-        Toast.makeText(context, "Succes", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun doOnFailure(msg: String) {
-        Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show()
-    }
-
-    private lateinit var binding: PotsFragmentBinding
-
-    private lateinit var viewModel: PotsViewModel
-
-    private val recyclerView: RecyclerView? = null
+class PotsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,11 +22,23 @@ class PotsFragment : Fragment(), IUICallBacks {
         super.onCreateView(inflater, container, savedInstanceState)
 
         val binding = PotsFragmentBinding.inflate(inflater, container, false)
-
         // set up recycler view
-        binding.recyclerView.adapter = PotAdapter(context!!)
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val adapter = PotAdapter(requireContext())
+        adapter.setPots(arrayListOf())
+        binding.recyclerView.adapter = adapter
         // TODO : set up view model
+        val viewModel = ViewModelProviders.of(this)[PotsViewModel::class.java]
+
+        arguments?.getInt("pos")?.let {
+            viewModel.loadData(it)
+        }
+        viewModel.pots.observe(this, Observer {
+            Log.e("TAG", "onCreateView: $it")
+            adapter.setPots(it)
+        })
 
         return binding.root
     }
+
 }

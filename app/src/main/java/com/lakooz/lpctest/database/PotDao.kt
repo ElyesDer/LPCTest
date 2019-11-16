@@ -1,5 +1,8 @@
 package com.lakooz.lpctest.database
 
+import android.os.AsyncTask
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,36 +16,22 @@ abstract class PotDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun createOrUpdate(pot: Pot)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertAllAndSynchronize(pots: List<Pot>)
-
-    /*
-    @Query("SELECT * FROM Pot WHERE category = :category ")
-    abstract fun getPots(category: Int)
-*/
-    @Query("SELECT * FROM Pot ")
-    abstract fun getPots(): List<Pot>
-
-/*
-    //TODO
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun createOrUpdate(pot: Pot) {
-    }
-    // TODO : add missing methods
-    // some select , insert
-@Query("SELECT * from Pot")
-    fun getAll(): List<Pot>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(pot: Pot)
-
     fun insertAllAndSynchronize(pots: List<Pot>) {
-
+        doAsync {
+            pots.forEach {
+                Log.e("TAG", "insertAllAndSynchronize: $it")
+                createOrUpdate(it)
+            }
+        }.execute()
     }
 
-    fun getPots(category: Int): Any {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-*/
+    @Query("SELECT * FROM Pot WHERE category = :category ")
+    abstract fun getPots(category: Int): LiveData<List<Pot>>
 
+    class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
+        override fun doInBackground(vararg params: Void?): Void? {
+            handler()
+            return null
+        }
+    }
 }

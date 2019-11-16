@@ -2,14 +2,14 @@ package com.lakooz.lpctest.networking
 
 import com.lakooz.lpctest.model.Pot
 import io.reactivex.Single
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface IRestApiClient {
 
-    @GET("/get-pots")
+    @GET("get-pots")
     fun getData() : Single<List<Pot>>
 
-    @POST("/create-pot")
-    fun createPot() : Single<Pot>
+    @FormUrlEncoded
+    @POST("create-pot")
+    fun createPot(@Field("category") category : Int) : Single<Pot>
 }

@@ -1,15 +1,13 @@
 package com.lakooz.lpctest
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.lakooz.lpctest.model.Pot
-import android.view.LayoutInflater
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.lakooz.lpctest.databinding.PotItemBinding
-import androidx.databinding.DataBindingUtil.inflate
+import com.lakooz.lpctest.model.Pot
 
 
 class PotAdapter(private val context: Context, private var emptyView: View? = null) :
@@ -29,42 +27,28 @@ class PotAdapter(private val context: Context, private var emptyView: View? = nu
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        //TODO : DONE
-        // need to inflate this here
-        if (layoutInflater == null) {
-            layoutInflater = LayoutInflater.from(parent.context)
-        }
-
-        if (pots!!.size > 0)
-            view = inflate(layoutInflater!!, R.layout.pot_item, parent, false)
-        else {
-            view = inflate(layoutInflater!!, R.layout.pot_empty_item, parent, false)
-        }
+        if (layoutInflater == null)
+            layoutInflater = LayoutInflater.from(context)
+        view = DataBindingUtil.inflate(
+            layoutInflater!!,
+            R.layout.pot_item,
+            parent,
+            false
+        )
         return ViewHolder(view!!)
     }
 
     override fun getItemCount(): Int {
-        // TODO : DONE
-        // yearh return the size
+        // TODO
         return pots!!.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // TODO :DONE bind view holder & format amount properly DONE
         //todo DONE do some conversion to amount with amount = 0.0 format
-        if (pots!!.isNotEmpty())
-            return
-        
-        val potItem: Pot = pots!!.get(position)
 
-        holder.binding.title.text = potItem.name
-        holder.binding.subtiltle.text = potItem.amount.toString() + "$ Récoltés"
-        holder.binding.viewers.text = potItem.contributorsCount.toString()
-
-        // todo : apply some some corner here
-        Glide.with(context).load(potItem.imageUrl)
-            .apply(RequestOptions().centerCrop())
-            .into(holder.binding.img)
+        val potItem: Pot = pots!![position]
+        holder.binding.pot = potItem
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
