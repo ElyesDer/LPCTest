@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 
         val tabLabels: ArrayList<String> = arrayListOf()
         tabLabels.add(getString(R.string.birthday))
-        tabLabels.add(getString(R.string.solidarity))
         tabLabels.add(getString(R.string.farewell))
+        tabLabels.add(getString(R.string.solidarity))
 
         setSupportActionBar(toolbar)
 
