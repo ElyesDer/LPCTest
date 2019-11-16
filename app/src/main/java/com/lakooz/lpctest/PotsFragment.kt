@@ -4,13 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.lakooz.lpctest.databinding.PotsFragmentBinding
-import com.lakooz.lpctest.databinding.ActivityMainBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.lakooz.lpctest.utils.IUICallBacks
 
 
-class PotsFragment : Fragment() {
+class PotsFragment : Fragment(), IUICallBacks {
+    override fun doOnSuccess(msg: String) {
+        Toast.makeText(context, "Succes", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun doOnFailure(msg: String) {
+        Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show()
+    }
 
     private lateinit var binding: PotsFragmentBinding
 
