@@ -13,7 +13,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     //TODO ! done declaring the thin DAO intefcae
 
-    //abstract fun PotDao(): PotDao
+    abstract fun getDao(): PotDao
 
     companion object {
 
