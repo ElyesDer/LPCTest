@@ -65,12 +65,10 @@ class MainActivity : AppCompatActivity() {
         // TODO : set up view model and lanch it
         val model = ViewModelProviders.of(this)[PotsViewModel::class.java]
 
-        model.loadPots()
 
         swipeRefreshLayout!!.setOnRefreshListener {
             // TODO
             // call refresh method here
-            model.loadPots()
         }
 
         viewPager!!.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

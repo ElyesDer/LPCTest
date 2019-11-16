@@ -1,7 +1,6 @@
 package com.lakooz.lpctest
 
 import android.app.Application
-import androidx.room.Room
 import com.lakooz.lpctest.database.AppDatabase
 import com.lakooz.lpctest.networking.RestApiClient
 import com.lakooz.lpctest.repositories.PotRepository
@@ -27,8 +26,8 @@ class MyApplication : Application() {
         potApi = retrofit.create(RestApiClient::class.java)
         appDatabase = db
 
-        potRepository = PotRepository(potApi, appDatabase.getDao())
-        mainViewModel = MainViewModel(potRepository)
+        potRepository = PotRepository(this, potApi, appDatabase.getDao())
+        mainViewModel = MainViewModel(this, potRepository)
 
     }
 
@@ -40,12 +39,6 @@ class MyApplication : Application() {
         lateinit var potRepository: PotRepository
         lateinit var mainViewModel: MainViewModel
         lateinit var appDatabase: AppDatabase
-
-        fun injectPotApi() = potApi
-
-        fun injectMainViewModel() = mainViewModel
-
-        fun injectPotDao() = appDatabase.getDao()
 
     }
 }

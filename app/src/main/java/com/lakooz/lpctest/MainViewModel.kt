@@ -12,9 +12,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(application: Application, potRepository: PotRepository) :
+    AndroidViewModel(application) {
 
-    private val repository = PotRepository.instance
+    // need to acces repo , so maybe pass it
+    private val repository = potRepository
 
     private val _isRefreshing = MutableLiveData<Boolean>()
     val isRefreshing: LiveData<Boolean>

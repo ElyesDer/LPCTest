@@ -10,12 +10,12 @@ object RestApiClient {
 
 
     private const val BASE_URL = "https://recrutement.lepotcommuntest.fr/2019/recruiting/"
-    
+
     fun getPots(): Single<List<Pot>> {
         return RestAPI.invoke().getData()
     }
 
-    fun createPot(potId: Int): Single<Pot> {
+    fun createPot(category: Int): Single<Pot> {
         return RestAPI.invoke().createPot()
     }
 
