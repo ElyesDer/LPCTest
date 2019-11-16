@@ -34,7 +34,12 @@ class PotAdapter(private val context: Context, private var emptyView: View? = nu
         if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.context)
         }
-        view = inflate(layoutInflater!!, R.layout.pot_item, parent, false)
+
+        if (pots!!.size > 0)
+            view = inflate(layoutInflater!!, R.layout.pot_item, parent, false)
+        else {
+            view = inflate(layoutInflater!!, R.layout.pot_empty_item, parent, false)
+        }
         return ViewHolder(view!!)
     }
 
@@ -47,6 +52,9 @@ class PotAdapter(private val context: Context, private var emptyView: View? = nu
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // TODO :DONE bind view holder & format amount properly DONE
         //todo DONE do some conversion to amount with amount = 0.0 format
+        if (pots!!.isNotEmpty())
+            return
+        
         val potItem: Pot = pots!!.get(position)
 
         holder.binding.title.text = potItem.name
