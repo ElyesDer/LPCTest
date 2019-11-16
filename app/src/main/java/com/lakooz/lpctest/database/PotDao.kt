@@ -16,24 +16,21 @@ abstract class PotDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertAllAndSynchronize(pots: List<Pot>)
 
-    @Query("SELECT * FROM Pot WHERE category = :cat ORDER BY creatuibDate ")
-    abstract fun getPots(cat: Int)
-
+    /*
+    @Query("SELECT * FROM Pot WHERE category = :category ")
+    abstract fun getPots(category: Int)
+*/
+    @Query("SELECT * FROM Pot ")
+    abstract fun getPots(): List<Pot>
 
 /*
     //TODO
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun createOrUpdate(pot: Pot) {
-
     }
-
     // TODO : add missing methods
-
-
     // some select , insert
-
-
-    @Query("SELECT * from Pot")
+@Query("SELECT * from Pot")
     fun getAll(): List<Pot>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -46,9 +46,7 @@ class MainViewModel(application: Application, potRepository: PotRepository) :
                     // TODO
                 }
 
-            }
-
-            )
+            })
     }
 
     fun createPot(category: Int) {

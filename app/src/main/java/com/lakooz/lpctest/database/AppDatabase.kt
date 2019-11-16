@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.lakooz.lpctest.model.Pot
 
 
 // TODO : Done
-@Database(entities = arrayOf(Pot::class), version = 1)
+@Database(entities = arrayOf(Pot::class), version = 1,exportSchema = false)
+@TypeConverters( DateConverter::class )
 abstract class AppDatabase : RoomDatabase() {
 
     //TODO ! done declaring the thin DAO intefcae
@@ -43,6 +45,5 @@ abstract class AppDatabase : RoomDatabase() {
             }
             return instance!!
         }
-
     }
 }

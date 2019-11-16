@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     var tabAdapter: ViewPagerAdapter? = null
 
 
-    private val tabLabels: ArrayList<String>? = null
+    private val tabLabels: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +27,14 @@ class MainActivity : AppCompatActivity() {
 
 
         // init labels
-        tabLabels!!.add(getString(R.string.birthday))
-        tabLabels!!.add(getString(R.string.birthday))
-        tabLabels!!.add(getString(R.string.birthday))
+        tabLabels.add(getString(R.string.birthday))
+        tabLabels.add(getString(R.string.solidarity))
+        tabLabels.add(getString(R.string.farewell))
 
         // some binding stuff ; no time for butterknife
         // init vi
-        tabLayout = findViewById(R.id.tab_layout)
-        viewPager = findViewById(R.id.viewPager2)
+        tabLayout = findViewById<TabLayout>(R.id.tab_layout)
+        viewPager = findViewById<ViewPager2>(R.id.viewPager2)
         swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_layout)
 
         // setup tablayout content array
@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         // TODO : set up view model and lanch it
         val model = ViewModelProviders.of(this)[PotsViewModel::class.java]
 
+        println(model.pots)
 
         swipeRefreshLayout!!.setOnRefreshListener {
             // TODO
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             // TODO
         }
     }
+
 
     companion object {
         private const val START_SWIPE_REFRESH = 50
