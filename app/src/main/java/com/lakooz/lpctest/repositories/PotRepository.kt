@@ -19,7 +19,7 @@ class PotRepository(private val potDao: PotDao) {
 
     companion object {
         // TODO : initialize
-        val instance : PotRepository
+        val instance : PotRepository? = null
     }
 
 }

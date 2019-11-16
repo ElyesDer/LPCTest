@@ -12,12 +12,6 @@ class ViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) :
     // may use a list ?
     private val fragments = ArrayList<Fragment>()
 
-
-
-    fun addFagmentToList(fragment: Fragment) {
-        fragments.add(fragment)
-    }
-
     override fun createFragment(position: Int): Fragment {
         // based on position or maybe only one frag to use
         return PotsFragment()

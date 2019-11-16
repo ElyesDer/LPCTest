@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // TODO : set content view and declare views
+        // TODO : DONE set content view and declare views
         setContentView(R.layout.activity_main)
 
 

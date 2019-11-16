@@ -10,16 +10,7 @@ class PotsViewModel() : ViewModel() {
     private val repository = PotRepository.instance
 
     // TODO : initialize
-    var pots: LiveData<List<Pot>>
-
-    init {
-        pots = repository.getPots() // by default equal 0 so change depend on
-    }
-
-    fun loadPots() {
-        // todo async request
-        pots = repository.getPots()
-    }
+    val pots : LiveData<List<Pot>>? = null
 
 
 }

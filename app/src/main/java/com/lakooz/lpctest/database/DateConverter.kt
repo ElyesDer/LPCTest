@@ -8,19 +8,13 @@ class DateConverter {
     @TypeConverter
     fun fromTimestamp(mills: Long?): Date? {
         // TODO : DONE
-
-        return if (mills == null) {
-            Date(mills)
-        } else {
-            null
-        }
-
+        return if (mills == null) null else Date(mills)
     }
 
     @TypeConverter
-    fun fromDate(date: Date?) {
-        // TODO
-
+    fun fromDate(date: Date?): Long? {
+        // TODO ??
+        return date?.time
     }
 
 

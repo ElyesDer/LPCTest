@@ -9,14 +9,13 @@ class MyApplication : Application() {
         super.onCreate()
 
         // TODO: initialize database
-
-
+        var db = AppDatabase.getInstance(context = applicationContext)
     }
 
     companion object {
 
         lateinit var database: AppDatabase
-        private set
+            private set
 
     }
 }
