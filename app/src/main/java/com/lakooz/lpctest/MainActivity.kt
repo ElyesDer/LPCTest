@@ -70,5 +70,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val START_SWIPE_REFRESH = 50
+
     }
 }

@@ -3,6 +3,7 @@
     package="com.lakooz.lpctest">
 
     <!--TODO -->
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".MyApplication"
